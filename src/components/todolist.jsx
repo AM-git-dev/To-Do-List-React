@@ -1,37 +1,44 @@
-import React, {useState} from 'react';
+import React from 'react';
 
-export default function TodoList() {
-    const initialTodos = [
-        {id: 1, title: "Apprendre React", completed: false},
-        {id: 2, title: "Lire la Doc", completed: false},
-        {id: 3, title: "Continuer de lire la doc", completed: false}
-    ]
+const TodoList = ({ todos, deleteTodo, updateTodoStatus }) => (
+    <ul className="todo-list">
+        {todos.map(todo => (
+            <li
+                key={todo.id}
+                className={`todo-item ${getStatusStyle(todo.statut)}`}
+            >
+                <span>{todo.text}</span>
+                <select
+                    value={todo.statut}
+                    onChange={(e) => updateTodoStatus(todo.id, e.target.value)}
+                    className="todo-status-select"
+                >
+                    <option value="À faire">À faire</option>
+                    <option value="En cours">En cours</option>
+                    <option value="Terminé">Terminé</option>
+                </select>
+                <button
+                    onClick={() => deleteTodo(todo.id)}
+                    className="delete-btn"
+                >
+                    Supprimer
+                </button>
+            </li>
+        ))}
+    </ul>
+);
 
-    const [todos, setTodos] = useState(initialTodos)
-    const checkUncheck = (id) => {
-        setTodos((prevTodos) =>
-            prevTodos.map((todo) =>
-                todo.id === id ? {...todo, completed: !todo.completed} : todo
-            )
-        );
-    };
+const getStatusStyle = (status) => {
+    switch (status) {
+        case 'À faire':
+            return 'todo-status-todo';
+        case 'En cours':
+            return 'todo-status-in-progress';
+        case 'Terminé':
+            return 'todo-status-done';
+        default:
+            return '';
+    }
+};
 
-
-    return (
-        <ul>
-            {todos.map((todo) => (
-                <li key={todo.id}>
-                    <input
-                        type="checkbox"
-                        checked={todo.completed}
-                        onChange={() => checkUncheck(todo.id)}
-                    />
-                    {todo.title}
-                </li>
-            ))}
-        </ul>
-    );
-}
-
-
-
+export default TodoList;
