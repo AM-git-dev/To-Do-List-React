@@ -1,4 +1,4 @@
-# Nom du Projet
+# To Do List
 
 Bienvenue dans ce projet de To Do List en React! Voici une application développée avec Vite et React.
 
