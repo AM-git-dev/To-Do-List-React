@@ -9,6 +9,11 @@ Bienvenue dans ce projet de To Do List en React! Voici une application développ
 - Code Couleur liés aux états
 - Sauvegarde de l'état de la To Do dans le Local Storage 
 
+
+## Pour les curieux qui souhaiteraient juste tester, consultez ce lien : 
+
+to-do-list-react-v7oc.vercel.app/
+
 ## Prérequis
 
 Avant de commencer, assurez-vous d'avoir :
